@@ -62,9 +62,8 @@ public class Main {
 			
 		}
 		int numberOfWins = GameManager.numberOfWins;
-		float winrate = numberOfWins / numberOfGames * 100;
-		System.out.println("\nFor " + numberOfGames + " total number of games:\n" 
-				+ numberOfWins + " total number of wins.\n" + winrate 
-				+ "% Win Rate.");
+		//float winrate = numberOfWins / numberOfGames * 100;
+		System.out.println("For " + numberOfGames + " total number of games:\n" 
+				+ numberOfWins + " total number of wins.\n");
 	}
 }
