@@ -101,18 +101,6 @@ public class Player {
 		
 	}
 	
-
-
-
-
-
-
-
-
-
-
-
-
 	/**
 	 * Check and move possible Ace from the Manoeuvre piles.
 	 * @param piles			A Map type containing the List of Card piles.
