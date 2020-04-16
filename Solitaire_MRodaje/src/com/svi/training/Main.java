@@ -19,28 +19,12 @@ public class Main {
 		for (int gameCounter = 1; gameCounter <= numberOfGames; gameCounter++) {
 			GameManager.moveNumber = 0;
 			
-			// create deck
 			Deck maindeck = new Deck();
 			List<Card> cardList = maindeck.createDeck();
 			maindeck.setCardsDeck(cardList);
 
-//			// output initial (non-shuffled) deck
-//			System.out.println("Deck: ");
-//			for (Card card : maindeck.getCardsDeck()) {
-//				System.out.print(card.getSuit());
-//				System.out.println(card.getRank());
-//			}
-
 			maindeck.shuffleDeck(isShuffled);
 
-//			// output either shuffled or not
-//			System.out.println("\nDeck: ");
-//			for (Card card : maindeck.getCardsDeck()) {
-//				System.out.print(card.getSuit());
-//				System.out.println(card.getRank());
-//			}
-
-			//create 4 empty foundations
 			Map<Integer, Deck> foundationMap = new HashMap<>();
 			for (int counter = 0; counter < 4; counter++) {
 				Deck foundationDeck = new Deck();
@@ -50,7 +34,6 @@ public class Main {
 				foundationMap.put(counter, foundationDeck);
 			}
 			
-			// distribute to tableau
 			Map<Integer, Deck> piles = gameManager.distributeCardsToTable(maindeck);
 			GameManager.moveNumber--;
 

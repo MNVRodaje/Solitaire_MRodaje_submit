@@ -7,17 +7,12 @@ import java.util.Map;
 
 public class Player {
 	private GameManager display = new GameManager();
+	
 	private int talonRepeat;
-	private boolean possibleAceFromManoeuvreToFoundation = true, 
-			possibleDeuceFromManoeuvreToFoundation = true, 
-			posibbleManoeuvreToManoeuvre = true, 
-			aceInHand = true, 
-			deuceInHand = true,
-			possibleHandToManoeuvre = true, 
-			possibleKing = true,
-			mustDraw = true, 
-			mustRepeatTalon = true,
-			possibleManoeuvreToFoundation = true;
+	
+	private boolean possibleAceFromManoeuvreToFoundation = true, possibleDeuceFromManoeuvreToFoundation = true, 
+			posibbleManoeuvreToManoeuvre = true, aceInHand = true, deuceInHand = true, possibleHandToManoeuvre = true, 
+			possibleKing = true, mustDraw = true, mustRepeatTalon = true,possibleManoeuvreToFoundation = true;
 	
 	public boolean win = false, lose = false;
 
@@ -28,11 +23,8 @@ public class Player {
 	 * @param foundation	A Map type containing the List of Card Foundation piles.
 	 * @param numberOfDraws	An Int type containing the Number of Cards to be drawn from the Talon.
 	 */
-	public void playSolitaire(Map<Integer, Deck> piles, List<Card> hand, Map<Integer, Deck> foundation, int numberOfDraws) {
-		
+	public void playSolitaire(Map<Integer, Deck> piles, List<Card> hand, Map<Integer, Deck> foundation, int numberOfDraws) {	
 		List<Card> talon = piles.get(0).getCardsDeck();
-		
-		//do until there are no more possible moves
 		do {
 			do {
 				//draw cards
@@ -45,12 +37,8 @@ public class Player {
 					deuceInHandToFoundation(piles, hand, foundation);	//deuceInHand = false
 					handToManoeuvre(piles, hand, foundation);			//possibleHandToManoeuvre = false
 					kingToEmptyPile(piles, hand, foundation);			//possibleKing
-				} while (possibleAceFromManoeuvreToFoundation 
-						|| possibleDeuceFromManoeuvreToFoundation 
-						|| posibbleManoeuvreToManoeuvre 
-						|| aceInHand 
-						|| deuceInHand
-						|| possibleHandToManoeuvre
+				} while (possibleAceFromManoeuvreToFoundation || possibleDeuceFromManoeuvreToFoundation 
+						|| posibbleManoeuvreToManoeuvre || aceInHand || deuceInHand || possibleHandToManoeuvre 
 						|| possibleKing);
 				if (talon.isEmpty()) {
 					if (talonRepeat>1) {
@@ -208,8 +196,7 @@ public class Player {
 	 */
 	private void manoeuvreToManoeuvre(Map<Integer, Deck> piles, List<Card> hand, Map<Integer, Deck> foundation) {
 		int indexOfFirstPile = 0, indexOfSecondPile = 0;
-		// comparing cards to move
-		// first pile to be compared
+		
 		for (int firstPile = 1; firstPile <= 7; firstPile++) {
 			Integer sizeFirstPile = piles.get(firstPile).getCardsDeck().size();
 
@@ -218,8 +205,7 @@ public class Player {
 			}
 
 			indexOfFirstPile = findIndexOfFirstFaceUpCard(piles.get(firstPile).getCardsDeck());
-
-			// second pile to compare from first pile
+			
 			for (int secondPile = firstPile + 1; secondPile <= 7; secondPile++) {
 				if (firstPile == secondPile) {
 					continue;
@@ -263,11 +249,8 @@ public class Player {
 					possibleAceFromManoeuvreToFoundation = true;
 					possibleDeuceFromManoeuvreToFoundation = true;
 
-					String moveDescription = "Moved " 
-							+ secondCardSource.getSuit().toString()
-							+ secondCardSource.getRank().toString() 
-							+ " to " 
-							+ firstCardDestination.getSuit().toString()
+					String moveDescription = "Moved " + secondCardSource.getSuit().toString()
+							+ secondCardSource.getRank().toString() + " to " + firstCardDestination.getSuit().toString()
 							+ firstCardDestination.getRank().toString();
 					
 					display.display(piles, hand, foundation, moveDescription);
@@ -400,13 +383,8 @@ public class Player {
 					mustRepeatTalon = true;
 					talonRepeat = 0;
 					
-					String moveDescription = "Moved " 
-							+ handTopCard.getSuit().toString()
-							+ handTopCard.getRank().toString()
-							+ " from Hand to "
-							+ destination.getSuit().toString()
-							+ destination.getRank().toString()
-							+ " in Manoeuvre pile.";
+					String moveDescription = "Moved " + handTopCard.getSuit().toString() + handTopCard.getRank().toString()
+							+ " from Hand to " + destination.getSuit().toString() + destination.getRank().toString() + " in Manoeuvre pile.";
 					
 					display.display(piles, hand, foundation, moveDescription);
 					break;
@@ -453,16 +431,12 @@ public class Player {
 					
 					if (kingRankValue == 13) {
 						moveCardsFromManoeuvreToManoeuvre(kingPile, kingIndex, emptyPile);
-						
 						possibleAceFromManoeuvreToFoundation = true;
 						possibleDeuceFromManoeuvreToFoundation = true;
 						posibbleManoeuvreToManoeuvre = true;
 						possibleHandToManoeuvre = true;
 						
-						String moveDescription = "Moved "
-								+ king.getSuit().toString()
-								+ king.getRank().toString()
-								+ " to an Empty Manoeuvre Pile.";
+						String moveDescription = "Moved " + king.getSuit().toString() + king.getRank().toString() + " to an Empty Manoeuvre Pile.";
 						
 						display.display(piles, hand, foundation, moveDescription);
 						break;
@@ -491,10 +465,7 @@ public class Player {
 						mustRepeatTalon = true;
 						talonRepeat = 0;
 						
-						String moveDescription = "Moved "
-								+ handTopCard.getSuit().toString()
-								+ handTopCard.getRank().toString()
-								+ " from Hand to an Empty Manoeuvre Pile.";
+						String moveDescription = "Moved " + handTopCard.getSuit().toString() + handTopCard.getRank().toString() + " from Hand to an Empty Manoeuvre Pile.";
 						
 						display.display(piles, hand, foundation, moveDescription);
 						break;
@@ -550,20 +521,15 @@ public class Player {
 						
 						talonRepeat = 0;
 						
-						String moveDescription = "Moved " 
-								+ sourceCard.getSuit().toString()
-								+ sourceCard.getRank().toString() 
-								+ " from Manouvre to Foundation.";
+						String moveDescription = "Moved " + sourceCard.getSuit().toString() + sourceCard.getRank().toString() + " from Manouvre to Foundation.";
 						display.display(piles, hand, foundation, moveDescription);
 						break;
 					}
 				} else {
 					possibleManoeuvreToFoundation = false;
 				}
-				
 			}
 		}
-		
 	}
 	
 	/**
@@ -600,21 +566,17 @@ public class Player {
 	 * @param destination	A List type containing the card(s) where the card(s) will be moved.
 	 */
 	private void moveCardsFromManoeuvreToManoeuvre(List<Card> source, Integer index, List<Card> destination) {
-
 		List<Card> removedCards = new ArrayList<>();
-
 		for (int i = index; i < source.size(); i++) {
 			removedCards.add(source.remove(i));
 			i--;
 		}
-
 		if (!source.isEmpty()) {
 			int maxSize = source.size();
 
 			Card newFaceUpCard = source.get(maxSize - 1);
 			newFaceUpCard.setFace(true);
 		}
-
 		destination.addAll(removedCards);
 	}
 

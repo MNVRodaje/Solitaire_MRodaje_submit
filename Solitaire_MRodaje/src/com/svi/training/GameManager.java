@@ -154,7 +154,6 @@ public class GameManager {
 	public Map<Integer, Deck> distributeCardsToTable(Deck maindeck) {
 		int manoeuvreNumber = 0;
 		Map<Integer, Deck> manoeuvrePileMap = new HashMap<>();
-		// create empty piles for the manoeuvre
 		for (Integer pileNumber = 0; pileNumber <= 7; pileNumber++) {
 			Deck tempPile = new Deck();
 			tempPile.setCardsDeck(new ArrayList<>());
@@ -180,9 +179,7 @@ public class GameManager {
 				isFirstCard = false;
 			}
 		}
-
 		manoeuvrePileMap.get(0).getCardsDeck().addAll(tempCardList);
-
 		return manoeuvrePileMap;
 	}
 	
